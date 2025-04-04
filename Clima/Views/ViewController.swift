@@ -45,13 +45,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         searchTextField.delegate = self
         setupUI()
     }
-
+    
     func setupUI(){
+        addSubViews()
+        setContraints()
+    }
+    
+    func addSubViews(){
         view.addSubview(searchTextField)
         configSearchTextField()
+        
         view.addSubview(buttonSearch)
         configButtonSearch()
-        setContraints()
+        
+        view.addSubview(conditionImageView)
+        if #available(iOS 17.0, *) {
+            configconditionImageView()
+        } else {
+            //TO-DO estudas como realizar definicao de UIImage de outra forma
+            print("Versão iOS iferior ao 17.0")
+        }
     }
     
     func configSearchTextField(){
@@ -64,12 +77,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func configButtonSearch(){
         let icon = UIImage(systemName: "magnifyingglass")
         buttonSearch.setImage(icon, for: .normal)
-        
         buttonSearch.imageView?.contentMode = .scaleAspectFit
         buttonSearch.contentHorizontalAlignment = .fill
         buttonSearch.contentVerticalAlignment = .fill
-        
-        
+    }
+    
+    @available(iOS 17.0, *)
+    func configconditionImageView() {
+        let icon = UIImage(systemName: "sun.max.fill") ?? UIImage()
+        conditionImageView.setSymbolImage(icon, contentTransition: .replace)
+        conditionImageView.contentMode = .scaleAspectFit
     }
     
     func setContraints(){
@@ -85,6 +102,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             buttonSearch.leadingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 15),
             buttonSearch.heightAnchor.constraint(equalTo: searchTextField.heightAnchor),
             buttonSearch.widthAnchor.constraint(equalTo: buttonSearch.heightAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            conditionImageView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 100),
+            conditionImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            conditionImageView.widthAnchor.constraint(equalToConstant: 100),
+            conditionImageView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
