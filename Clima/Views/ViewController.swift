@@ -65,6 +65,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //TO-DO estudas como realizar definicao de UIImage de outra forma
             print("Versão iOS iferior ao 17.0")
         }
+        
+        view.addSubview(temperatureLabel)
+        configTemperatureLabel()
+        
+        view.addSubview(cityLabel)
+        configCityLabel()
     }
     
     func configSearchTextField(){
@@ -89,6 +95,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         conditionImageView.contentMode = .scaleAspectFit
     }
     
+    func configTemperatureLabel(){
+        temperatureLabel.text = "20º C"
+        temperatureLabel.font = .systemFont(ofSize: 50)
+    }
+    
+    func configCityLabel(){
+        cityLabel.text = "Londres"
+        cityLabel.font = .systemFont(ofSize: 50)
+    }
+    
     func setContraints(){
         
         NSLayoutConstraint.activate([
@@ -107,8 +123,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             conditionImageView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 100),
             conditionImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            conditionImageView.widthAnchor.constraint(equalToConstant: 100),
-            conditionImageView.heightAnchor.constraint(equalToConstant: 100)
+            conditionImageView.widthAnchor.constraint(equalToConstant: 150),
+            conditionImageView.heightAnchor.constraint(equalToConstant: 150)
+        ])
+        
+        NSLayoutConstraint.activate([
+            temperatureLabel.centerXAnchor.constraint(equalTo: conditionImageView.centerXAnchor),
+            temperatureLabel.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: 50)
+            
+        ])
+        
+        NSLayoutConstraint.activate([
+            cityLabel.centerXAnchor.constraint(equalTo: temperatureLabel.centerXAnchor),
+            cityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 50)
         ])
     }
 }
