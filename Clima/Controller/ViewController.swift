@@ -23,5 +23,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         climaView.searchTextField.resignFirstResponder()
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        climaView.searchTextField.text = ""
+    }
 }
 
