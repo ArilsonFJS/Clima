@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         climaView.searchTextField.delegate = self
+        callbackButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
