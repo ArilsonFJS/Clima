@@ -27,5 +27,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         climaView.searchTextField.text = ""
     }
+    
+    private func callbackButton(){
+        climaView.actionButton = { [ weak self ] in
+            self?.handleCustomButton()
+        }
+    }
+    
+    private func handleCustomButton() {
+        climaView.searchTextField.resignFirstResponder()
+        climaView.searchTextField.text = ""
+    }
 }
 
