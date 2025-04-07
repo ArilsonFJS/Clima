@@ -75,8 +75,7 @@ class ClimaView: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         setupUI()
-        setupActions()
-        
+        setupAction()
     }
     
     required init?(coder: NSCoder) {
@@ -125,5 +124,13 @@ class ClimaView: UIView {
             cityLabel.centerXAnchor.constraint(equalTo: temperatureLabel.centerXAnchor),
             cityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 50)
         ])
+    }
+    
+    private func setupAction(){
+        buttonSearch.addTarget(self, action: #selector(handleActionButton), for: .touchUpInside)
+    }
+    
+    @objc private func handleActionButton(){
+        actionButton?()
     }
 }
