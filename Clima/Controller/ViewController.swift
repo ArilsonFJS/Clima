@@ -19,5 +19,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         climaView.searchTextField.delegate = self
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        climaView.searchTextField.resignFirstResponder()
+    }
 }
 
