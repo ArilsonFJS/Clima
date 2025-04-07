@@ -9,7 +9,9 @@ import UIKit
 
 class ClimaView: UIView {
     
-    let searchTextField: UITextField = {
+    var actionButton: (() -> Void)?
+    
+    lazy var searchTextField: UITextField = {
         let searchTextField = UITextField()
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -21,7 +23,7 @@ class ClimaView: UIView {
         return searchTextField
     }()
     
-    let buttonSearch: UIButton = {
+    lazy var buttonSearch: UIButton = {
         let buttonSearch = UIButton()
         buttonSearch.translatesAutoresizingMaskIntoConstraints = false
         
@@ -34,7 +36,7 @@ class ClimaView: UIView {
         return buttonSearch
     }()
     
-    let conditionImageView: UIImageView = {
+    lazy var conditionImageView: UIImageView = {
         let conditionImageView = UIImageView()
         conditionImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -49,7 +51,7 @@ class ClimaView: UIView {
         return conditionImageView
     }()
     
-    let temperatureLabel: UILabel = {
+    lazy var temperatureLabel: UILabel = {
         let temperatureLabel = UILabel()
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,7 +61,7 @@ class ClimaView: UIView {
         return temperatureLabel
     }()
     
-    let cityLabel: UILabel = {
+    lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -73,6 +75,7 @@ class ClimaView: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         setupUI()
+        setupActions()
         
     }
     
