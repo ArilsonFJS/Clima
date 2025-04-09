@@ -29,6 +29,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         climaView.searchTextField.text = ""
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if climaView.searchTextField.text != "" {
+            return true
+        } else {
+            climaView.searchTextField.placeholder = "Type something"
+            return false
+        }
+    }
+    
     private func callbackButton(){
         climaView.actionButton = { [ weak self ] in
             self?.handleCustomButton()
@@ -36,8 +45,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func handleCustomButton() {
-        climaView.searchTextField.resignFirstResponder()
-        climaView.searchTextField.text = ""
+        climaView.searchTextField.endEditing(true)
+        
     }
 }
 
