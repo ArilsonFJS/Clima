@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate {
     
     private let climaView = ClimaView()
+    var service = Service()
     
     override func loadView() {
         self.view = climaView
@@ -26,6 +27,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if let city = climaView.searchTextField.text {
+            service.fetchWeather(cityName: city)
+        }
         climaView.searchTextField.text = ""
     }
     
