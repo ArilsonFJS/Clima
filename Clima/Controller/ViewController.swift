@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, ClimaServiceDelegate {
     
     private let climaView = ClimaView()
     var service = Service()
@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.delegate = self
         climaView.searchTextField.delegate = self
         callbackButton()
     }
@@ -52,6 +53,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private func handleCustomButton() {
         climaView.searchTextField.endEditing(true)
         
+    }
+    
+    func didUpdateWeather(_ serviceClima: Service, weather: ClimaModel) {
+        
+        DispatchQueue.main.async {
+            self.climaView.temperatureLabel.text = weather.temperatureString
+            self.climaView.cityLabel.text = weather.cityName
+            if #available(iOS 17.0, *) {
+                self.climaView.conditionImageView.setSymbolImage(UIImage(systemName: weather.conditionName) ?? UIImage(), contentTransition: .replace)
+            } else {
+                // Fallback on earlier versions
+            }
+            print(weather.conditionName)
+        }
+        
+    }
+    
+    func didFailWithError(error: any Error) {
+        print(error)
     }
 }
 
