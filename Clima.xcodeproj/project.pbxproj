@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B46709BB2D9F0DB500B06D8D /* Exceptions for "Clima" folder in "Clima" target */ = {
+		B435ECA92E29CB0200C631C2 /* Exceptions for "Clima" folder in "Clima" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -21,10 +21,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B46709AB2D9F0DB300B06D8D /* Clima */ = {
+		B435EC9E2E29CB0200C631C2 /* Clima */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				B46709BB2D9F0DB500B06D8D /* Exceptions for "Clima" folder in "Clima" target */,
+				B435ECA92E29CB0200C631C2 /* Exceptions for "Clima" folder in "Clima" target */,
 			);
 			path = Clima;
 			sourceTree = "<group>";
@@ -45,7 +45,7 @@
 		B46709A02D9F0DB300B06D8D = {
 			isa = PBXGroup;
 			children = (
-				B46709AB2D9F0DB300B06D8D /* Clima */,
+				B435EC9E2E29CB0200C631C2 /* Clima */,
 				B46709AA2D9F0DB300B06D8D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,7 +74,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B46709AB2D9F0DB300B06D8D /* Clima */,
+				B435EC9E2E29CB0200C631C2 /* Clima */,
 			);
 			name = Clima;
 			packageProductDependencies = (

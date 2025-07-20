@@ -15,23 +15,36 @@ class Service {
     }
     
     func performRequest(urlString: String) {
-        //1. Criar uma URL
+        
         guard let url = URL(string: urlString) else { return }
         
-        //2. Criar uma URLSession e dar uma tarefa(task) a sessao
-        let session = URLSession.shared.dataTask(with: url) { data, response, error in
+        let session = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if error != nil {
                 print(error!.localizedDescription)
                 return
             }
             
             if let safeData = data {
-                let dataString = String(data: safeData, encoding: .utf8)
-                print(dataString)
+                if let weather = self?.parseJson(weatherData: safeData) {
+                }
             }
-        }.resume()//3. Iniciar tarefa(task)
+        }.resume()
+    }
+    
+    func parseJson(weatherData: Data) -> ClimaModel? {
+        let jsonDecoder = JSONDecoder()
         
-        
-        
+        do {
+            let decodeData = try jsonDecoder.decode(ClimaData.self, from: weatherData)
+            let id = decodeData.weather[0].id
+            let name = decodeData.name
+            let temp = decodeData.main.temp
+            
+            let weather = ClimaModel(conditionId: id, cityName: name, temperature: temp)
+            return weather
+        } catch{
+            print(error.localizedDescription)
+            return nil
+        }
     }
 }
