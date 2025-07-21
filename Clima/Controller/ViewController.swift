@@ -60,12 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaServiceDelegat
         DispatchQueue.main.async {
             self.climaView.temperatureLabel.text = weather.temperatureString
             self.climaView.cityLabel.text = weather.cityName
-            if #available(iOS 17.0, *) {
-                self.climaView.conditionImageView.setSymbolImage(UIImage(systemName: weather.conditionName) ?? UIImage(), contentTransition: .replace)
-            } else {
-                // Fallback on earlier versions
-            }
-            print(weather.conditionName)
+            self.climaView.conditionImageView.image = UIImage(systemName: weather.conditionName)
         }
         
     }

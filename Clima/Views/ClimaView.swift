@@ -39,13 +39,7 @@ class ClimaView: UIView {
     lazy var conditionImageView: UIImageView = {
         let conditionImageView = UIImageView()
         conditionImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let icon = UIImage(systemName: "sun.max.fill") ?? UIImage()
-        if #available(iOS 17.0, *) {
-            conditionImageView.setSymbolImage(icon, contentTransition: .replace)
-        } else {
-            // Fallback on earlier versions
-        }
+        conditionImageView.image = UIImage(systemName: "sun.max.fill")
         conditionImageView.contentMode = .scaleAspectFit
         
         return conditionImageView
