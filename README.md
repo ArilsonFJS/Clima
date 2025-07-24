@@ -27,6 +27,7 @@
 - **UIKit**
 - **ViewCode**
 - **Auto Layout**
+- **CoreLocation**
 - **URLSession** para requisições HTTP
 - **OpenWeatherMap API**
 - **JSONDecoder** para parse dos dados
