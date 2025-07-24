@@ -21,6 +21,11 @@ class Service {
         performRequest(with: urlString)
     }
     
+    func fetchWeather (latitude lat: Double, longitude lon: Double) {
+        let urlString = "\(APIConstants.baseUrl)&lat=\(lat)&lon=\(lon)&appid=\(APIConstants.apiKey)"
+        performRequest(with: urlString)
+    }
+    
     private func performRequest(with urlString: String) {
         
         guard let url = URL(string: urlString) else { return }

@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
     
     private let climaView = ClimaView()
     var service = Service()
+    let locationManager = CLLocationManager()
+    
     
     override func loadView() {
         self.view = climaView
@@ -18,6 +21,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         service.delegate = self
         climaView.searchTextField.delegate = self
         callbackButton()
@@ -75,6 +81,21 @@ extension ViewController: UITextFieldDelegate {
             climaView.searchTextField.placeholder = "Type something"
             return false
         }
+    }
+}
+
+//MARK: - CLLocationManagerDelegate
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        service.fetchWeather(latitude: lat, longitude: lon)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print(error)
     }
 }
 
