@@ -1,4 +1,4 @@
-# ☀️ Clima (🚧 EM DESENVOLVIMENTO! 🚧)
+# ☀️ Clima
 
 **Clima** é um aplicativo iOS desenvolvido em Swift utilizando **UIKit** e **ViewCode**, que consome a API da **OpenWeatherMap** para exibir informações climáticas de uma localização específica.
 
@@ -58,9 +58,6 @@ struct APIConstants {
 ```
 
 ---
-
-### Próximos Desafios
- - Adicionar suporte a localização por GPS.
 
 
 
