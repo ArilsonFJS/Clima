@@ -17,7 +17,7 @@
 > Clima/
 > > │-- Constants/ (Constantes usadas no projeto)
 > > > > │-- Models/ (Modelos de dados para os filmes)
-> > > > > │-- Services/ (Serviço responsável por chamar a API TMDB)
+> > > > > │-- Services/ (Serviço responsável por chamar a Open Weather Map)
 > > > > > > │-- Controller/ (Lógica de apresentação e manipulação dos dados)
 > > > > > > > │-- Views/ (Interfaces de usuário e componentes visuais)
 ---
