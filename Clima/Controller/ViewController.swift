@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, ClimaServiceDelegate {
+class ViewController: UIViewController {
     
     private let climaView = ClimaView()
     var service = Service()
@@ -23,6 +23,39 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaServiceDelegat
         callbackButton()
     }
     
+    private func callbackButton(){
+        climaView.actionButton = { [ weak self ] in
+            self?.handleCustomButton()
+        }
+    }
+    
+    private func handleCustomButton() {
+        climaView.searchTextField.endEditing(true)
+        
+    }
+    
+}
+
+//MARK: - ClimaServiceDelegate
+extension ViewController: ClimaServiceDelegate {
+    
+    func didUpdateWeather(_ serviceClima: Service, weather: ClimaModel) {
+        
+        DispatchQueue.main.async {
+            self.climaView.temperatureLabel.text = weather.temperatureString
+            self.climaView.cityLabel.text = weather.cityName
+            self.climaView.conditionImageView.image = UIImage(systemName: weather.conditionName)
+        }
+        
+    }
+    
+    func didFailWithError(error: any Error) {
+        print(error)
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         climaView.searchTextField.resignFirstResponder()
     }
@@ -42,31 +75,6 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaServiceDelegat
             climaView.searchTextField.placeholder = "Type something"
             return false
         }
-    }
-    
-    private func callbackButton(){
-        climaView.actionButton = { [ weak self ] in
-            self?.handleCustomButton()
-        }
-    }
-    
-    private func handleCustomButton() {
-        climaView.searchTextField.endEditing(true)
-        
-    }
-    
-    func didUpdateWeather(_ serviceClima: Service, weather: ClimaModel) {
-        
-        DispatchQueue.main.async {
-            self.climaView.temperatureLabel.text = weather.temperatureString
-            self.climaView.cityLabel.text = weather.cityName
-            self.climaView.conditionImageView.image = UIImage(systemName: weather.conditionName)
-        }
-        
-    }
-    
-    func didFailWithError(error: any Error) {
-        print(error)
     }
 }
 
