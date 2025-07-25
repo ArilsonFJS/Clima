@@ -48,7 +48,7 @@ extension ViewController: ClimaServiceDelegate {
     func didUpdateWeather(_ serviceClima: Service, weather: ClimaModel) {
         
         DispatchQueue.main.async {
-            self.climaView.temperatureLabel.text = weather.temperatureString
+            self.climaView.temperatureLabel.text = "\(weather.temperatureString) ºC"
             self.climaView.cityLabel.text = weather.cityName
             self.climaView.conditionImageView.image = UIImage(systemName: weather.conditionName)
         }
